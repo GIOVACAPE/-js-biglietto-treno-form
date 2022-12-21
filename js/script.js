@@ -47,41 +47,40 @@ submitButton.addEventListener('click' ,
 
     }
 
-);
-
-emptyButton.addEventListener('Click' ,
-
-    function () {
-
-        KmInput.value = '';
-        ageSelect.value= ''
-        
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 )
+
+//  emptyButton.addEventListener('Click' ,
+
+//     function () {
+
+//         KmInput.value = '';
+//         ageSelect.value= ''
+        
+//     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
