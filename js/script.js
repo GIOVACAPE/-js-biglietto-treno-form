@@ -1,69 +1,72 @@
-const KmInput = document.getElementById('Km-input');
-const ageSelect = document.getElementById('age-input');
 
+const form = document.getElementById('form');
 
-const submitButton = document.getElementById("submit-button");
+form.addEventListener('submit', ticketMain)
 
+const biglietti=[];
 
-submitButton.addEventListener('click' ,
+function ticketMain (form) {
 
-    function () {
+    form.preventDefault();
 
-        console.log ('KmInput.value', KmInput.value)
-        console.log ('ageSelect.value', ageSelect.value)
+    let kmIn = document.getElementById("kmInput").value;
+    let ageIn = document.getElementById('ageInput').value;
 
-        const Km = KmInput.value;
-        const age = ageSelect.value;
-        
-        const basePrice = 0.21 * Km;
-        console.log('basePrice', basePrice, typeof basePrice)
-        let finalPrice = basePrice;
-        let discount;
-        if (isNaN(Km) == true) {
+    let km = parseFloat(kmIn);
+    let age = parseInt(ageIn);
 
-            
-            
-        }
-        if (age == 'm' ) {
+    
 
-            discount = basePrice / 100*20; // 20% di basePrice
-            console.log('discount', discout, typeof discount)
-            finalPrice = basePrice - discount; //Prezzo finale MINORENNI
-            console.log('finalPrice', finalPrice, typeof finalPrice)
-            
-        }
-        else if (age == 'o') {
+    let ticketObj ={km:km,
+                    age:age,
+                    finalPrice:priceCalc(km,age)};
 
-            discount = basePrice / 100 * 40; // 40% rispetto al baseprice
-            console.log('discount', discount, typeof discount)
-            finalPrice = basePrice - discount; //prezzo finale OVER 65
-            console.log('finalPrice', finalPrice, typeof finalPrice)
-            
-        }
+    biglietti.push(ticketObj);
+    console.log(biglietti);
 
-        alert('Prezzo finale = euro' + finalPrice.toFixed(2));
+    addTableRow(biglietti.length , ticketObj.km, ticketObj.age, ticketObj.finalPrice);
 
-        console.log('finalPrice.toFixed(2)' , finalPrice.toFixed(2), typeof finalPrice.toFixed(2))
+    
+}
 
+function addTableRow (num,km,age,price) {
+
+    const tr = document.createElement('tr');
+    tbo.appendChild(tr);
+
+    const th = document.createElement('th');
+    tr.appendChild(th);
+    th.innerHTML = num;
+
+    const kmtd = document.createElement('td');
+    tr.appendChild(kmtd);
+    kmtd.innerHTML= km;
+    const agetd = document.createElement('td');
+    tr.appendChild(agetd);
+    agetd.innerHTML = age;
+    const pricetd = document.createElement('td');
+    tr.appendChild(pricetd);
+    pricetd.innerHTML = price.toFixed(2)+'€';
+
+}
+
+function priceCalc (km,age) {
+    
+    let userPrice;
+
+    const price = 0.21
+    const priceUnder = price - ((price/100)*20)
+    const priceOver = price - ((price/100)*40)
+
+    if (age<18) {
+        userPrice = km*priceUnder;
+    }else if (age>60) {
+        userPrice = km*priceOver;
+    } else {
+        userPrice = km*price;
     }
-
-)
-
-//  emptyButton.addEventListener('Click' ,
-
-//     function () {
-
-//         KmInput.value = '';
-//         ageSelect.value= ''
-        
-//     }
-
-
-
-
-
-
-
+    return userPrice;
+}
 
 
 
