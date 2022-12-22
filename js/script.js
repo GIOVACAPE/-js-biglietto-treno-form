@@ -50,6 +50,9 @@ function addTableRow (num,km,age,price) {
 
 }
 
+//calcolo sui prezzi
+
+
 function priceCalc (km,age) {
     
     let userPrice;
@@ -69,7 +72,7 @@ function priceCalc (km,age) {
 }
 
 
-
+//--------------- Manca bottone di ricalcolo e il codice del biglietto.
 
 
 
